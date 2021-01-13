@@ -31,7 +31,7 @@
     } else if (status != kCLAuthorizationStatusNotDetermined) {
         UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Упс!" message:@"Не удалось определить текущий город!" preferredStyle: UIAlertControllerStyleAlert];
         [alertController addAction:[UIAlertAction actionWithTitle:@"Закрыть" style:(UIAlertActionStyleDefault) handler:nil]];
-        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alertController animated:YES completion:nil];
+        [[UIApplication sharedApplication].windows.firstObject.rootViewController presentViewController:alertController animated:YES completion:nil];
     }
 }
 

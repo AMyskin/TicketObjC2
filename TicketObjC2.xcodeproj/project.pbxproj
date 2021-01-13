@@ -101,6 +101,7 @@
 		0A853BD725921EE9001003D4 /* TicketObjC2 */ = {
 			isa = PBXGroup;
 			children = (
+				1BAA826E25AF225600BECEC9 /* Map */,
 				1B90648025AEE6B200DB02EF /* Tickets */,
 				1B90647225AEE1C500DB02EF /* Services */,
 				0A853BF625921FC7001003D4 /* airports.json */,
@@ -110,10 +111,6 @@
 				0A853BD925921EE9001003D4 /* AppDelegate.m */,
 				0A853BDB25921EE9001003D4 /* SceneDelegate.h */,
 				0A853BDC25921EE9001003D4 /* SceneDelegate.m */,
-				1B90646A25AEE0B600DB02EF /* MapPrice.h */,
-				1B90646B25AEE0B600DB02EF /* MapPrice.m */,
-				1B90648425AF0C9100DB02EF /* MapViewController.h */,
-				1B90648525AF0C9100DB02EF /* MapViewController.m */,
 				0A853BFC25922000001003D4 /* Country.h */,
 				0A853BFD25922000001003D4 /* Country.m */,
 				0A853C0025922075001003D4 /* City.h */,
@@ -156,6 +153,17 @@
 				1B90647D25AEE6A100DB02EF /* TicketsViewController.m */,
 			);
 			path = Tickets;
+			sourceTree = "<group>";
+		};
+		1BAA826E25AF225600BECEC9 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				1B90646A25AEE0B600DB02EF /* MapPrice.h */,
+				1B90646B25AEE0B600DB02EF /* MapPrice.m */,
+				1B90648425AF0C9100DB02EF /* MapViewController.h */,
+				1B90648525AF0C9100DB02EF /* MapViewController.m */,
+			);
+			path = Map;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
