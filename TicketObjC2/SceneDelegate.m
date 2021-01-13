@@ -7,6 +7,7 @@
 
 #import "SceneDelegate.h"
 #import "MainViewController.h"
+#import "MapViewController.h"
 
 @interface SceneDelegate ()
 
@@ -21,8 +22,11 @@
     [self.window makeKeyAndVisible];
     
     MainViewController *mainViewController = [[MainViewController alloc] init];
+    MapViewController *mapViewController = [[MapViewController alloc] init];
     
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController: mainViewController];
+    //UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController: mainViewController];
+    
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController: mapViewController];
     //[navigationController setNavigationBarHidden:YES];
     
     self.window.rootViewController = navigationController;

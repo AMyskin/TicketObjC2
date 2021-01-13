@@ -60,22 +60,36 @@
     _dateLabel.frame = CGRectMake(10.0, CGRectGetMaxY(_placesLabel.frame) + 8.0, self.contentView.frame.size.width - 20.0, 20.0);
 }
 
-- (UIImageView*)getMyImageFrom:(NSURL *)urlLogo {
+- (UIImageView *)getMyImageFrom:(NSURL *)urlLogo {
     
     CGFloat width = self.bounds.size.width;
-    CGFloat height = self.bounds.size.height;
+    
     
     NSLog(@"%@", urlLogo);
     UIImageView *imgView = [[UIImageView alloc] init];
-   // NSURL *url = urlLogo;
+   
     NSData *data=[NSData dataWithContentsOfURL:urlLogo];
     imgView.image=[UIImage imageWithData:data];
     CGFloat imgHeight =(width - 10) * imgView.image.size.height / imgView.image.size.width;
-    [imgView setFrame:CGRectMake(5, 120, width - 10, imgHeight)];
+    [imgView setFrame:CGRectMake(5, 5, width - 10, imgHeight)];
     [imgView setContentMode:UIViewContentModeScaleAspectFit];
-    // [scrollview addSubview:imgView];
+    
     
     return imgView;
+}
+
+- (UIImage *)getOnlyImageFrom:(NSURL *)urlLogo {
+    
+    CGFloat width = self.bounds.size.width;
+    
+    
+    NSLog(@"%@", urlLogo);
+    UIImage *myimgView = [[UIImage alloc] init];
+   
+    NSData *data=[NSData dataWithContentsOfURL:urlLogo];
+    myimgView=[UIImage imageWithData:data];
+  
+    return myimgView;
 }
 
 - (void)setTicket:(Ticket *)ticket {
@@ -88,18 +102,17 @@
     dateFormatter.dateFormat = @"dd MMMM yyyy hh:mm";
     _dateLabel.text = [dateFormatter stringFromDate:ticket.departure];
     NSURL *urlLogo = AirlineLogo(ticket.airline);
-   // [_airlineLogoView yy_setImageWithURL:urlLogo options:YYWebImageOptionSetImageWithFadeAnimation];
-    //UIImageView *imgView = [self getMyImageFrom:urlLogo];
-   // _airlineLogoView = [self getMyImageFrom:urlLogo];
-   // [_airlineLogoView ];
+
+  //  _airlineLogoView = [self getMyImageFrom:urlLogo];
     
+    _airlineLogoView.image=[self getOnlyImageFrom:urlLogo];
+
     
     CGFloat width = self.bounds.size.width;
-    CGFloat height = self.bounds.size.height;
-    NSData *data=[NSData dataWithContentsOfURL:urlLogo];
-    _airlineLogoView.image=[UIImage imageWithData:data];
+  // NSData *data=[NSData dataWithContentsOfURL:urlLogo];
+  //  _airlineLogoView.image=[UIImage imageWithData:data];
     CGFloat imgHeight =(width - 10) * _airlineLogoView.image.size.height / _airlineLogoView.image.size.width;
-    [_airlineLogoView setFrame:CGRectMake(5, 120, width - 10, imgHeight)];
+    [_airlineLogoView setFrame:CGRectMake(5, 5, width - 10, imgHeight)];
     [_airlineLogoView setContentMode:UIViewContentModeScaleAspectFit];
 }
 

@@ -27,6 +27,7 @@
 		1B90647625AEE35E00DB02EF /* Ticket.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B90647525AEE35E00DB02EF /* Ticket.m */; };
 		1B90647A25AEE5A500DB02EF /* TicketTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B90647925AEE5A500DB02EF /* TicketTableViewCell.m */; };
 		1B90647E25AEE6A100DB02EF /* TicketsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B90647D25AEE6A100DB02EF /* TicketsViewController.m */; };
+		1B90648625AF0C9100DB02EF /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1B90648525AF0C9100DB02EF /* MapViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +67,8 @@
 		1B90647925AEE5A500DB02EF /* TicketTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TicketTableViewCell.m; sourceTree = "<group>"; };
 		1B90647C25AEE6A100DB02EF /* TicketsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TicketsViewController.h; sourceTree = "<group>"; };
 		1B90647D25AEE6A100DB02EF /* TicketsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TicketsViewController.m; sourceTree = "<group>"; };
+		1B90648425AF0C9100DB02EF /* MapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		1B90648525AF0C9100DB02EF /* MapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +112,8 @@
 				0A853BDC25921EE9001003D4 /* SceneDelegate.m */,
 				1B90646A25AEE0B600DB02EF /* MapPrice.h */,
 				1B90646B25AEE0B600DB02EF /* MapPrice.m */,
+				1B90648425AF0C9100DB02EF /* MapViewController.h */,
+				1B90648525AF0C9100DB02EF /* MapViewController.m */,
 				0A853BFC25922000001003D4 /* Country.h */,
 				0A853BFD25922000001003D4 /* Country.m */,
 				0A853C0025922075001003D4 /* City.h */,
@@ -235,6 +240,7 @@
 				1B90646825AEDFD800DB02EF /* LocationService.m in Sources */,
 				1B90647025AEE1BB00DB02EF /* APIManager.m in Sources */,
 				0A853C0A25922110001003D4 /* DataManager.m in Sources */,
+				1B90648625AF0C9100DB02EF /* MapViewController.m in Sources */,
 				1B90647E25AEE6A100DB02EF /* TicketsViewController.m in Sources */,
 				0A853BDD25921EE9001003D4 /* SceneDelegate.m in Sources */,
 				0A853BFE25922000001003D4 /* Country.m in Sources */,
