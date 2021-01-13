@@ -21,7 +21,7 @@
     self.window = [[UIWindow alloc] initWithFrame:windowsFrame];
     [self.window makeKeyAndVisible];
     
-    MainViewController *mainViewController = [[MainViewController alloc] init];
+   // MainViewController *mainViewController = [[MainViewController alloc] init];
     MapViewController *mapViewController = [[MapViewController alloc] init];
     
     //UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController: mainViewController];

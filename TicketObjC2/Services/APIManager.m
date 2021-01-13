@@ -52,11 +52,11 @@
 
 - (void)load:(NSString *)urlString withCompletion:(void (^)(id _Nullable result))completion {
     dispatch_async(dispatch_get_main_queue(), ^{
-       [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+      // [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     });
     [[[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:urlString] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+           // [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
         });
         completion([NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil]);
     }] resume] ;

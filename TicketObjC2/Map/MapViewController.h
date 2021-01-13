@@ -11,7 +11,7 @@
 
 
 
-@interface MapViewController : UITableViewController
+@interface MapViewController : UIViewController
 
 @end
 

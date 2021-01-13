@@ -80,8 +80,6 @@
 
 - (UIImage *)getOnlyImageFrom:(NSURL *)urlLogo {
     
-    CGFloat width = self.bounds.size.width;
-    
     
     NSLog(@"%@", urlLogo);
     UIImage *myimgView = [[UIImage alloc] init];

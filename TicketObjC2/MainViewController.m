@@ -79,7 +79,7 @@
 
 - (void)dataLoadedSuccessfully {
     [[APIManager sharedInstance] cityForCurrentIP:^(City *city) {
-        [self setPlace:city withDataType:DataSourceTypeCity andPlaceType:PlaceTypeDeparture forButton:_departureButton];
+        [self setPlace:city withDataType:DataSourceTypeCity andPlaceType:PlaceTypeDeparture forButton:self->_departureButton];
     }];
 }
 
