@@ -9,6 +9,7 @@
 #import "DataManager.h"
 #import "APIManager.h"
 #import "Ticket.h"
+#import "TicketObjC2-Swift.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -17,6 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 #define AirlineLogo(iata) [NSURL URLWithString:[NSString stringWithFormat:@"https://pics.avs.io/200/200/%@.png", iata]];
 @property (nonatomic, strong) Ticket *ticket;
+@property (nonatomic, strong) FavoriteTicket *favoriteTicket;
+
 
 @end
 

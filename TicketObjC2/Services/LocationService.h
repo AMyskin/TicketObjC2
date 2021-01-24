@@ -6,7 +6,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 
 #define kLocationServiceDidUpdateCurrentLocation @"LocationServiceDidUpdateCurrentLocation"

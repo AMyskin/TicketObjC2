@@ -6,6 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TicketObjC2-Swift.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
