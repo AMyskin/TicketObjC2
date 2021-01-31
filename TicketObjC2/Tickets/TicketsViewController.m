@@ -13,10 +13,12 @@
 
 @interface TicketsViewController ()
 @property (nonatomic, strong) NSArray *tickets;
+@property (nonatomic, strong) NSArray *mapPrices;
 @end
 
 @implementation TicketsViewController {
     BOOL isFavorites;
+    BOOL isFavoritesTickets;
 }
 
 
@@ -24,7 +26,9 @@
     self = [super init];
     if (self) {
         isFavorites = YES;
+        isFavoritesTickets = YES;
         self.tickets = [NSArray new];
+        self.mapPrices = [NSArray new];
         self.title = @"Избранное";
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [self.tableView registerClass:[TicketTableViewCell class] forCellReuseIdentifier:TicketCellReuseIdentifier];
@@ -47,9 +51,37 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    if (isFavorites) {
-        self.navigationController.navigationBar.prefersLargeTitles = YES;
+    if (isFavorites ) {
+        
+        CGFloat width = [UIScreen mainScreen].bounds.size.width;
+        CGFloat height = [UIScreen mainScreen].bounds.size.height;
+        
+        UISegmentedControl *segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"Tickets", @"MapPrice"]];
+        [segmentedControl setFrame:CGRectMake(0.05*width, 0, 0.9*width, 0.03*height)];
+        [segmentedControl setTintColor:[UIColor blueColor]];
+        [segmentedControl setSelectedSegmentIndex:0];
+        [segmentedControl addTarget:self action:@selector(changeSegment:) forControlEvents:UIControlEventValueChanged];
+        [self.view addSubview:segmentedControl];
+        
+        
+        
+        self.navigationController.navigationBar.prefersLargeTitles = NO;
         _tickets = [[CoreDataHelper sharedInstance] favorites];
+        _mapPrices = [[CoreDataHelper sharedInstance] favoritesMapPrice];
+        [self.tableView reloadData];
+        
+    }
+}
+
+
+
+- (void)changeSegment:(UISegmentedControl*)sender {
+    NSLog(@"Выбран сегмент номер %li", (long)[sender selectedSegmentIndex]+1);
+    if ((long)[sender selectedSegmentIndex]) {
+        isFavoritesTickets = NO;
+        [self.tableView reloadData];
+    } else {
+        isFavoritesTickets = YES;
         [self.tableView reloadData];
     }
 }
@@ -57,13 +89,24 @@
 #pragma mark - UITableViewDataSource & UITableViewDelegate
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _tickets.count;
+    if (isFavoritesTickets || !isFavorites) {
+        return _tickets.count;
+    } else {
+        return _mapPrices.count;
+    }
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TicketTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:TicketCellReuseIdentifier forIndexPath:indexPath];
+
     if (isFavorites) {
-        cell.favoriteTicket = [_tickets objectAtIndex:indexPath.row];
+        if (isFavoritesTickets){
+            cell.favoriteTicket = [_tickets objectAtIndex:indexPath.row];
+        } else {
+            cell.mapPriceEntity = [_mapPrices objectAtIndex:indexPath.row];
+        }
+        
     } else {
         cell.ticket = [_tickets objectAtIndex:indexPath.row];
     }
@@ -81,11 +124,11 @@
     UIAlertAction *favoriteAction;
     if ([[CoreDataHelper sharedInstance] isFavorite: [_tickets objectAtIndex:indexPath.row]]) {
         favoriteAction = [UIAlertAction actionWithTitle:@"Удалить из избранного" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
-            [[CoreDataHelper sharedInstance] removeFromFavorite:[_tickets objectAtIndex:indexPath.row]];
+            [[CoreDataHelper sharedInstance] removeFromFavorite:[self->_tickets objectAtIndex:indexPath.row]];
         }];
     } else {
         favoriteAction = [UIAlertAction actionWithTitle:@"Добавить в избранное" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            [[CoreDataHelper sharedInstance] addToFavorite:[_tickets objectAtIndex:indexPath.row]];
+            [[CoreDataHelper sharedInstance] addToFavorite:[self->_tickets objectAtIndex:indexPath.row]];
         }];
     }
     
@@ -94,6 +137,8 @@
     [alertController addAction:cancelAction];
     [self presentViewController:alertController animated:YES completion:nil];
 }
+
+
 
 @end
 

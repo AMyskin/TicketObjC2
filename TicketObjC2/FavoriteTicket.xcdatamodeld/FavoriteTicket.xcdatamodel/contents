@@ -11,7 +11,17 @@
         <attribute name="returnData" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="to" optional="YES" attributeType="String"/>
     </entity>
+    <entity name="MapPriceEntity" representedClassName="MapPriceEntity" syncable="YES">
+        <attribute name="departure" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="destination" optional="YES" attributeType="String"/>
+        <attribute name="distance" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="numberOfChanges" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="origin" optional="YES" attributeType="String"/>
+        <attribute name="returnDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="value" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
     <elements>
         <element name="FavoriteTicket" positionX="-63" positionY="-18" width="128" height="28"/>
+        <element name="MapPriceEntity" positionX="-54" positionY="-18" width="128" height="148"/>
     </elements>
 </model>

@@ -24,13 +24,6 @@
     
     TabBarController *tabBarController = [[TabBarController alloc] init];
     
-   // MainViewController *mainViewController = [[MainViewController alloc] init];
-   // MapViewController *mapViewController = [[MapViewController alloc] init];
-    
-    //UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController: mainViewController];
-    
-   // UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController: mapViewController];
-    //[navigationController setNavigationBarHidden:YES];
     
     self.window.rootViewController = tabBarController;
     

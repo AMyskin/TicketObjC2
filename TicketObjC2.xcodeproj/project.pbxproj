@@ -33,6 +33,8 @@
 		1BA89DB825BDE88E007DA7DB /* FavoriteTicket+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA89DB625BDE88E007DA7DB /* FavoriteTicket+CoreDataClass.swift */; };
 		1BA89DB925BDE88E007DA7DB /* FavoriteTicket+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA89DB725BDE88E007DA7DB /* FavoriteTicket+CoreDataProperties.swift */; };
 		1BA89DC625BDE8DB007DA7DB /* CoreDataHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1BA89DC525BDE8DB007DA7DB /* CoreDataHelper.m */; };
+		1BA89DD125BE1222007DA7DB /* MapPriceEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA89DCF25BE1222007DA7DB /* MapPriceEntity+CoreDataClass.swift */; };
+		1BA89DD225BE1222007DA7DB /* MapPriceEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BA89DD025BE1222007DA7DB /* MapPriceEntity+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +84,8 @@
 		1BA89DB725BDE88E007DA7DB /* FavoriteTicket+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavoriteTicket+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		1BA89DC425BDE8DB007DA7DB /* CoreDataHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CoreDataHelper.h; sourceTree = "<group>"; };
 		1BA89DC525BDE8DB007DA7DB /* CoreDataHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataHelper.m; sourceTree = "<group>"; };
+		1BA89DCF25BE1222007DA7DB /* MapPriceEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapPriceEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		1BA89DD025BE1222007DA7DB /* MapPriceEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapPriceEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +102,8 @@
 		0A853BCC25921EE9001003D4 = {
 			isa = PBXGroup;
 			children = (
+				1BA89DCF25BE1222007DA7DB /* MapPriceEntity+CoreDataClass.swift */,
+				1BA89DD025BE1222007DA7DB /* MapPriceEntity+CoreDataProperties.swift */,
 				1BA89DB625BDE88E007DA7DB /* FavoriteTicket+CoreDataClass.swift */,
 				1BA89DB725BDE88E007DA7DB /* FavoriteTicket+CoreDataProperties.swift */,
 				0A853BD725921EE9001003D4 /* TicketObjC2 */,
@@ -268,6 +274,7 @@
 				1BA89DC625BDE8DB007DA7DB /* CoreDataHelper.m in Sources */,
 				0A853C0225922075001003D4 /* City.m in Sources */,
 				1BA89DB825BDE88E007DA7DB /* FavoriteTicket+CoreDataClass.swift in Sources */,
+				1BA89DD225BE1222007DA7DB /* MapPriceEntity+CoreDataProperties.swift in Sources */,
 				1B90647625AEE35E00DB02EF /* Ticket.m in Sources */,
 				1BA89DB925BDE88E007DA7DB /* FavoriteTicket+CoreDataProperties.swift in Sources */,
 				0A853BEB25921EEB001003D4 /* main.m in Sources */,
@@ -275,6 +282,7 @@
 				1B90647025AEE1BB00DB02EF /* APIManager.m in Sources */,
 				0A853C0A25922110001003D4 /* DataManager.m in Sources */,
 				1B90648625AF0C9100DB02EF /* MapViewController.m in Sources */,
+				1BA89DD125BE1222007DA7DB /* MapPriceEntity+CoreDataClass.swift in Sources */,
 				1B90647E25AEE6A100DB02EF /* TicketsViewController.m in Sources */,
 				0A853BDD25921EE9001003D4 /* SceneDelegate.m in Sources */,
 				1B30928625B5F367002BB1F0 /* TabBarController.m in Sources */,

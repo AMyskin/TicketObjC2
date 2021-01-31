@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 #define AirlineLogo(iata) [NSURL URLWithString:[NSString stringWithFormat:@"https://pics.avs.io/200/200/%@.png", iata]];
 @property (nonatomic, strong) Ticket *ticket;
 @property (nonatomic, strong) FavoriteTicket *favoriteTicket;
-
+@property (nonatomic, strong) MapPriceEntity *mapPriceEntity;
 
 @end
 

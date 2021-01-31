@@ -30,7 +30,7 @@
     UINavigationController *mainNavigationController = [[UINavigationController alloc] initWithRootViewController:mainViewController];
     [controllers addObject:mainNavigationController];
     
-    MapViewController *mapViewController = [[MapViewController alloc] init];
+    MapViewController *mapViewController = [[MapViewController alloc] initMapViewController];
     mapViewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:@"Карта цен" image:[UIImage imageNamed:@"map"] selectedImage:[UIImage imageNamed:@"map_selected"]];
     UINavigationController *mapNavigationController = [[UINavigationController alloc] initWithRootViewController:mapViewController];
     [controllers addObject:mapNavigationController];

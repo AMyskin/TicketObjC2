@@ -94,5 +94,46 @@
     return [_managedObjectContext executeFetchRequest:request error:nil];
 }
 
+///// MapPrice
+
+- (MapPrice *)favoriteFromMapPrice:(MapPrice *)mapPrice {
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"MapPriceEntity"];
+    request.predicate = [NSPredicate predicateWithFormat:@"destination == %@ AND origin == %@ AND departure == %@ AND returnDate == %@ AND numberOfChanges == %ld AND value == %ld AND distance == %ld", mapPrice.destination.countryCode, mapPrice.origin.countryCode, mapPrice.departure, mapPrice.returnDate, mapPrice.numberOfChanges, (long)mapPrice.value, (long)mapPrice.distance];
+    return [[_managedObjectContext executeFetchRequest:request error:nil] firstObject];
+}
+
+
+- (BOOL)isFavoriteMapPrice:(MapPrice *)mapPrice {
+    return [self favoriteFromMapPrice:mapPrice] != nil;
+}
+
+- (void)addToFavoriteMapPrice:(MapPrice *)mapPrice {
+    MapPriceEntity *mapPriceEntity = [NSEntityDescription insertNewObjectForEntityForName:@"MapPriceEntity" inManagedObjectContext:_managedObjectContext];
+    mapPriceEntity.origin = mapPrice.origin.countryCode;
+    mapPriceEntity.distance = mapPrice.distance;
+    mapPriceEntity.departure = mapPrice.departure;
+    mapPriceEntity.destination = mapPrice.destination.countryCode;
+    mapPriceEntity.returnDate = mapPrice.returnDate;
+    mapPriceEntity.numberOfChanges = mapPrice.numberOfChanges;
+    mapPriceEntity.value = mapPrice.value;
+
+    [self save];
+}
+
+- (void)removeFromFavoriteMapPrice:(MapPrice *)mapPrice {
+    MapPriceEntity *favorite = [self favoriteFromMapPrice:mapPrice];
+    if (favorite) {
+        [_managedObjectContext deleteObject:favorite];
+        [self save];
+    }
+}
+
+- (NSArray *)favoritesMapPrice {
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"MapPriceEntity"];
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"value" ascending:NO]];
+    return [_managedObjectContext executeFetchRequest:request error:nil];
+}
+
+
 @end
 

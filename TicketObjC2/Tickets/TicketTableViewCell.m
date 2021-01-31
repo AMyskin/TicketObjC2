@@ -53,7 +53,7 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    self.contentView.frame = CGRectMake(10.0, 10.0, [UIScreen mainScreen].bounds.size.width - 20.0, self.frame.size.height - 20.0);
+    self.contentView.frame = CGRectMake(10.0, 30.0, [UIScreen mainScreen].bounds.size.width - 20.0, self.frame.size.height - 20.0);
     _priceLabel.frame = CGRectMake(10.0, 10.0, self.contentView.frame.size.width - 110.0, 40.0);
     _airlineLogoView.frame = CGRectMake(CGRectGetMaxX(_priceLabel.frame) + 10.0, 10.0, 80.0, 80.0);
     _placesLabel.frame = CGRectMake(10.0, CGRectGetMaxY(_priceLabel.frame) + 16.0, 100.0, 20.0);
@@ -125,6 +125,29 @@
     _dateLabel.text = [dateFormatter stringFromDate:favoriteTicket.departure];
     NSURL *urlLogo = AirlineLogo(favoriteTicket.airline);
     //[_airlineLogoView yy_setImageWithURL:urlLogo options:YYWebImageOptionSetImageWithFadeAnimation];
+    _airlineLogoView.image=[self getOnlyImageFrom:urlLogo];
+
+    
+    CGFloat width = self.bounds.size.width;
+  // NSData *data=[NSData dataWithContentsOfURL:urlLogo];
+  //  _airlineLogoView.image=[UIImage imageWithData:data];
+    CGFloat imgHeight =(width - 10) * _airlineLogoView.image.size.height / _airlineLogoView.image.size.width;
+    [_airlineLogoView setFrame:CGRectMake(5, 5, width - 10, imgHeight)];
+    [_airlineLogoView setContentMode:UIViewContentModeScaleAspectFit];
+}
+
+- (void)setMapPriceEntity:(MapPriceEntity *)mapPriceEntity {
+    _mapPriceEntity = mapPriceEntity;
+   
+   _priceLabel.text = [NSString stringWithFormat:@"%lld руб.", mapPriceEntity.value];
+   _placesLabel.text = [NSString stringWithFormat:@"%@ - %@", mapPriceEntity.origin, mapPriceEntity.destination];
+   
+   NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+   dateFormatter.dateFormat = @"dd MMMM yyyy hh:mm";
+   _dateLabel.text = [dateFormatter stringFromDate:mapPriceEntity.departure];
+   //NSURL *urlLogo = AirlineLogo(favoriteTicket.airline);
+   //[_airlineLogoView yy_setImageWithURL:urlLogo options:YYWebImageOptionSetImageWithFadeAnimation];
+    _airlineLogoView.image = nil;
 }
 
 
