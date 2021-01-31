@@ -104,14 +104,9 @@
     _dateLabel.text = [dateFormatter stringFromDate:ticket.departure];
     dispatch_async(mainQueue, ^{
         NSURL *urlLogo = AirlineLogo(ticket.airline);
-        
-        
-        
+
         self->_airlineLogoView.image=[self getOnlyImageFrom:urlLogo];
-        
-        //CGFloat width = self.bounds.size.width;
-        //CGFloat imgHeight =(width - 10) * self->_airlineLogoView.image.size.height / self->_airlineLogoView.image.size.width;
-        //[self->_airlineLogoView setFrame:CGRectMake(5, 5, width - 10, imgHeight)];
+
         [self->_airlineLogoView setContentMode:UIViewContentModeScaleAspectFit];
     });
 }
@@ -154,6 +149,7 @@
     //NSURL *urlLogo = AirlineLogo(favoriteTicket.airline);
     //[_airlineLogoView yy_setImageWithURL:urlLogo options:YYWebImageOptionSetImageWithFadeAnimation];
     _airlineLogoView.image = nil;
+
 }
 
 

@@ -211,22 +211,38 @@
     }
 }
 
+- (UIImage *)getOnlyImageFrom:(NSURL *)urlLogo {
+    
+    
+    NSLog(@"%@", urlLogo);
+    UIImage *myimgView = [[UIImage alloc] init];
+    
+    NSData *data=[NSData dataWithContentsOfURL:urlLogo];
+    myimgView=[UIImage imageWithData:data];
+    
+    return myimgView;
+}
+
 - (void)doneButtonDidTap:(UIBarButtonItem *)sender
 {
     if (_datePicker.date && notificationCell) {
         NSString *message = [NSString stringWithFormat:@"%@ - %@ за %@ руб.", notificationCell.ticket.from, notificationCell.ticket.to, notificationCell.ticket.price];
 
         NSURL *imageURL;
-//        if (notificationCell.airlineLogoView.image) {
-//            NSString *path = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingString:[NSString stringWithFormat:@"/%@.png", notificationCell.ticket.airline]];
-//            if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
-//                UIImage *logo = notificationCell.airlineLogoView.image;
-//                NSData *pngData = UIImagePNGRepresentation(logo);
-//                [pngData writeToFile:path atomically:YES];
-//
-//            }
-//            imageURL = [NSURL fileURLWithPath:path];
-//        }
+        if (notificationCell.ticket.airline) {
+            NSString *path = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingString:[NSString stringWithFormat:@"/%@.png", notificationCell.ticket.airline]];
+            
+            NSURL *urlLogo = AirlineLogo(notificationCell.ticket.airline);
+            
+            UIImage *logo = [self getOnlyImageFrom:urlLogo];
+            NSData *pngData = UIImagePNGRepresentation(logo);
+            [pngData writeToFile:path atomically:YES];
+            
+            
+            
+            
+            imageURL = [NSURL fileURLWithPath:path];
+        }
 
         Notification notification = NotificationMake(NSLocalizedString(@"ticket_reminder", ""), message, _datePicker.date, imageURL);
         [[NotificationCenter sharedInstance] sendNotification:notification];
@@ -247,16 +263,21 @@
         NSString *message = [NSString stringWithFormat:@"%@ - %@ за %lld руб.", notificationCell.favoriteTicket.from, notificationCell.favoriteTicket.to, notificationCell.favoriteTicket.price];
 
         NSURL *imageURL;
-//        if (notificationCell.airlineLogoView.image) {
-//            NSString *path = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingString:[NSString stringWithFormat:@"/%@.png", notificationCell.ticket.airline]];
-//            if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
-//                UIImage *logo = notificationCell.airlineLogoView.image;
-//                NSData *pngData = UIImagePNGRepresentation(logo);
-//                [pngData writeToFile:path atomically:YES];
-//
-//            }
-//            imageURL = [NSURL fileURLWithPath:path];
-//        }
+        if (notificationCell.favoriteTicket.airline) {
+            NSString *path = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject] stringByAppendingString:[NSString stringWithFormat:@"/%@.png", notificationCell.favoriteTicket.airline]];
+            
+            NSURL *urlLogo = AirlineLogo(notificationCell.favoriteTicket.airline);
+            
+            UIImage *logo = [self getOnlyImageFrom:urlLogo];
+            NSData *pngData = UIImagePNGRepresentation(logo);
+            [pngData writeToFile:path atomically:YES];
+            
+            
+            
+            
+            imageURL = [NSURL fileURLWithPath:path];
+        }
+
 
         Notification notification = NotificationMake(NSLocalizedString(@"ticket_reminder", ""), message, _datePicker.date, imageURL);
         [[NotificationCenter sharedInstance] sendNotification:notification];
