@@ -27,7 +27,7 @@
     self = [super init];
     if (self) {
         self.tickets = [NSArray new];
-        self.title = @"Карта цен";
+        self.title = NSLocalizedString(@"mapTitle", "");
     }
     return self;
 }

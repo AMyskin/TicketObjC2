@@ -1,0 +1,31 @@
+/* 
+  Localizable.strings
+  TicketObjC2
+
+  Created by Alexander Myskin on 31.01.2021.
+  
+*/
+"main Title" = "Searching";
+"mapTitle" = "MAP";
+"faroviteTitle" = "Farovite";
+
+"Tickets" = "Tickets";
+"MapPrice" = "MapPrice";
+
+"from" = "from";
+"to" = "to";
+
+"search" = "Search";
+
+"City" = "City";
+"Airports" = "Airports";
+
+// Alerts
+
+"error" = "Error";
+"tickets_not_found" = "Zero Ticket Found";
+"close" = "Close";
+"not_set_place_arrival_or_departure" = "Not set place arrival or departure";
+"actions_with_tickets" = "Actions with tickets";
+"actions_with_tickets_describe" = "Actions with tickets describe";
+"not_determine_current_city" = "City no found";
