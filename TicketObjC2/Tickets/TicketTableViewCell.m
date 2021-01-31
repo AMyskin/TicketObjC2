@@ -18,10 +18,12 @@
 
 @implementation TicketTableViewCell
 
+
+
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-
+        
         self.contentView.layer.shadowColor = [[[UIColor blackColor] colorWithAlphaComponent:0.2] CGColor];
         self.contentView.layer.shadowOffset = CGSizeMake(1.0, 1.0);
         self.contentView.layer.shadowRadius = 10.0;
@@ -67,7 +69,7 @@
     
     NSLog(@"%@", urlLogo);
     UIImageView *imgView = [[UIImageView alloc] init];
-   
+    
     NSData *data=[NSData dataWithContentsOfURL:urlLogo];
     imgView.image=[UIImage imageWithData:data];
     CGFloat imgHeight =(width - 10) * imgView.image.size.height / imgView.image.size.width;
@@ -83,14 +85,15 @@
     
     NSLog(@"%@", urlLogo);
     UIImage *myimgView = [[UIImage alloc] init];
-   
+    
     NSData *data=[NSData dataWithContentsOfURL:urlLogo];
     myimgView=[UIImage imageWithData:data];
-  
+    
     return myimgView;
 }
 
 - (void)setTicket:(Ticket *)ticket {
+    dispatch_queue_t mainQueue = dispatch_get_main_queue();
     _ticket = ticket;
     
     _priceLabel.text = [NSString stringWithFormat:@"%@ руб.", ticket.price];
@@ -99,19 +102,18 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateFormat = @"dd MMMM yyyy hh:mm";
     _dateLabel.text = [dateFormatter stringFromDate:ticket.departure];
-    NSURL *urlLogo = AirlineLogo(ticket.airline);
-
-  //  _airlineLogoView = [self getMyImageFrom:urlLogo];
-    
-    _airlineLogoView.image=[self getOnlyImageFrom:urlLogo];
-
-    
-    CGFloat width = self.bounds.size.width;
-  // NSData *data=[NSData dataWithContentsOfURL:urlLogo];
-  //  _airlineLogoView.image=[UIImage imageWithData:data];
-    CGFloat imgHeight =(width - 10) * _airlineLogoView.image.size.height / _airlineLogoView.image.size.width;
-    [_airlineLogoView setFrame:CGRectMake(5, 5, width - 10, imgHeight)];
-    [_airlineLogoView setContentMode:UIViewContentModeScaleAspectFit];
+    dispatch_async(mainQueue, ^{
+        NSURL *urlLogo = AirlineLogo(ticket.airline);
+        
+        
+        
+        self->_airlineLogoView.image=[self getOnlyImageFrom:urlLogo];
+        
+        //CGFloat width = self.bounds.size.width;
+        //CGFloat imgHeight =(width - 10) * self->_airlineLogoView.image.size.height / self->_airlineLogoView.image.size.width;
+        //[self->_airlineLogoView setFrame:CGRectMake(5, 5, width - 10, imgHeight)];
+        [self->_airlineLogoView setContentMode:UIViewContentModeScaleAspectFit];
+    });
 }
 
 - (void)setFavoriteTicket:(FavoriteTicket *)favoriteTicket {
@@ -125,28 +127,32 @@
     _dateLabel.text = [dateFormatter stringFromDate:favoriteTicket.departure];
     NSURL *urlLogo = AirlineLogo(favoriteTicket.airline);
     //[_airlineLogoView yy_setImageWithURL:urlLogo options:YYWebImageOptionSetImageWithFadeAnimation];
-    _airlineLogoView.image=[self getOnlyImageFrom:urlLogo];
-
     
-    CGFloat width = self.bounds.size.width;
-  // NSData *data=[NSData dataWithContentsOfURL:urlLogo];
-  //  _airlineLogoView.image=[UIImage imageWithData:data];
-    CGFloat imgHeight =(width - 10) * _airlineLogoView.image.size.height / _airlineLogoView.image.size.width;
-    [_airlineLogoView setFrame:CGRectMake(5, 5, width - 10, imgHeight)];
-    [_airlineLogoView setContentMode:UIViewContentModeScaleAspectFit];
+    dispatch_queue_t mainQueue = dispatch_get_main_queue();
+    dispatch_async(mainQueue, ^{
+        self->_airlineLogoView.image=[self getOnlyImageFrom:urlLogo];
+        
+        
+       // CGFloat width = self.bounds.size.width;
+        // NSData *data=[NSData dataWithContentsOfURL:urlLogo];
+        //  _airlineLogoView.image=[UIImage imageWithData:data];
+        //CGFloat imgHeight =(width - 10) * self->_airlineLogoView.image.size.height / self->_airlineLogoView.image.size.width;
+        //[self->_airlineLogoView setFrame:CGRectMake(5, 5, width - 10, imgHeight)];
+        [self->_airlineLogoView setContentMode:UIViewContentModeScaleAspectFit];
+    });
 }
 
 - (void)setMapPriceEntity:(MapPriceEntity *)mapPriceEntity {
     _mapPriceEntity = mapPriceEntity;
-   
-   _priceLabel.text = [NSString stringWithFormat:@"%lld руб.", mapPriceEntity.value];
-   _placesLabel.text = [NSString stringWithFormat:@"%@ - %@", mapPriceEntity.origin, mapPriceEntity.destination];
-   
-   NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-   dateFormatter.dateFormat = @"dd MMMM yyyy hh:mm";
-   _dateLabel.text = [dateFormatter stringFromDate:mapPriceEntity.departure];
-   //NSURL *urlLogo = AirlineLogo(favoriteTicket.airline);
-   //[_airlineLogoView yy_setImageWithURL:urlLogo options:YYWebImageOptionSetImageWithFadeAnimation];
+    
+    _priceLabel.text = [NSString stringWithFormat:@"%lld руб.", mapPriceEntity.value];
+    _placesLabel.text = [NSString stringWithFormat:@"%@ - %@", mapPriceEntity.origin, mapPriceEntity.destination];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateFormat = @"dd MMMM yyyy hh:mm";
+    _dateLabel.text = [dateFormatter stringFromDate:mapPriceEntity.departure];
+    //NSURL *urlLogo = AirlineLogo(favoriteTicket.airline);
+    //[_airlineLogoView yy_setImageWithURL:urlLogo options:YYWebImageOptionSetImageWithFadeAnimation];
     _airlineLogoView.image = nil;
 }
 
