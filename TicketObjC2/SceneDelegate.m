@@ -9,6 +9,7 @@
 #import "MainViewController.h"
 #import "MapViewController.h"
 #import "TabBarController.h"
+#import "NotificationCenter.h"
 
 @interface SceneDelegate ()
 
@@ -30,6 +31,8 @@
     UIWindowScene *windowsScene = (UIWindowScene*)scene;
     
     [self.window setWindowScene:windowsScene];
+    [[NotificationCenter sharedInstance] registerService];
+
 }
 
 
